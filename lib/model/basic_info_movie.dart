@@ -1,5 +1,5 @@
-class TrendingMovie {
-  const TrendingMovie({
+class BasicInfoMovie {
+  const BasicInfoMovie({
     required this.id,
     required this.title,
     required this.releaseDate,
@@ -10,6 +10,6 @@ class TrendingMovie {
   final int id;
   final String title;
   final String releaseDate;
-  final String posterPath;
-  final double voteAverage;
+  final String? posterPath;
+  final double? voteAverage;
 }

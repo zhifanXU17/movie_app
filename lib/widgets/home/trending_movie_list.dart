@@ -6,8 +6,8 @@ import 'package:intl/intl.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import 'package:movie_app/model/trending_movie.dart';
-import 'package:movie_app/widgets/home/trending_movie_item.dart';
+import 'package:movie_app/model/basic_info_movie.dart';
+import 'package:movie_app/widgets/home/movie_list_item.dart';
 
 const storage = FlutterSecureStorage();
 
@@ -21,7 +21,7 @@ class TrendingMovieList extends StatefulWidget {
 }
 
 class _TrendingMovieListState extends State<TrendingMovieList> {
-  List<TrendingMovie> _trendingMovies = [];
+  List<BasicInfoMovie> _trendingMovies = [];
   bool _loading = true;
   String? _error;
 
@@ -55,15 +55,15 @@ class _TrendingMovieListState extends State<TrendingMovieList> {
       );
 
       final List listData = json.decode(response.body)['results'];
-      final List<TrendingMovie> loadedItems = [];
+      final List<BasicInfoMovie> loadedItems = [];
       for (final item in listData.sublist(0, 5)) {
         loadedItems.add(
-          TrendingMovie(
+          BasicInfoMovie(
             id: item["id"],
             title: item["title"],
             releaseDate: formatter.format(DateTime.parse(item["release_date"])),
             posterPath: item["poster_path"],
-            voteAverage: item["vote_average"] != 0 ? item["vote_average"] : 0,
+            voteAverage: item["vote_average"],
           ),
         );
       }
@@ -96,11 +96,11 @@ class _TrendingMovieListState extends State<TrendingMovieList> {
               )
             : SizedBox(
                 width: double.infinity,
-                height: 350,
+                height: 320,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: _trendingMovies.length,
-                  itemBuilder: (context, index) => TrendingMovieItem(
+                  itemBuilder: (context, index) => MovieListItem(
                     trendingMovie: _trendingMovies[index],
                   ),
                 ),

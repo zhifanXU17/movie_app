@@ -46,7 +46,7 @@ class _TabsScreenState extends State<TabsScreen> {
         leadingWidth: 55.0,
         elevation: 0.0,
       ),
-      body: const HomeScreen(),
+      body: const SingleChildScrollView(child: HomeScreen()),
       bottomNavigationBar: const CustomNavigationBar(),
     );
   }
