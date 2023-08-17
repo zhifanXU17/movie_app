@@ -63,7 +63,7 @@ class _TrendingMovieListState extends State<TrendingMovieList> {
             title: item["title"],
             releaseDate: formatter.format(DateTime.parse(item["release_date"])),
             posterPath: item["poster_path"],
-            voteAverage: item["vote_average"],
+            voteAverage: item["vote_average"].toDouble(),
           ),
         );
       }
@@ -101,7 +101,7 @@ class _TrendingMovieListState extends State<TrendingMovieList> {
                   scrollDirection: Axis.horizontal,
                   itemCount: _trendingMovies.length,
                   itemBuilder: (context, index) => MovieListItem(
-                    trendingMovie: _trendingMovies[index],
+                    basicMovieInfo: _trendingMovies[index],
                   ),
                 ),
               );

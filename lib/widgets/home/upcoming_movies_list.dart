@@ -95,7 +95,7 @@ class _UpcomingMoviesListState extends State<UpcomingMoviesList> {
                   scrollDirection: Axis.horizontal,
                   itemCount: _upcomingMovies.length,
                   itemBuilder: (context, index) => MovieListItem(
-                    trendingMovie: _upcomingMovies[index],
+                    basicMovieInfo: _upcomingMovies[index],
                   ),
                 ),
               );

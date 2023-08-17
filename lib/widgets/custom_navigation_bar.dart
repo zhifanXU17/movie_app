@@ -102,9 +102,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                           duration: const Duration(seconds: 1),
                           curve: Curves.fastLinearToSlowEaseIn,
                           child: Text(
-                            index == _currentIndex
-                                ? '${listOfStrings[index]}'
-                                : '',
+                            index == _currentIndex ? listOfStrings[index] : '',
                             style: const TextStyle(
                               color: Colors.blueAccent,
                               fontWeight: FontWeight.w600,
