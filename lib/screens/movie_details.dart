@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:movie_app/model/detailed_info_movie.dart';
 import 'package:movie_app/model/genre.dart';
 import 'package:movie_app/widgets/MovieDetails/info_table.dart';
+import 'package:movie_app/widgets/MovieDetails/credits_list.dart';
 
 const storage = FlutterSecureStorage();
 final DateFormat formatter = DateFormat('yyyy-MM-dd');
@@ -15,8 +16,12 @@ final DateFormat formatter = DateFormat('yyyy-MM-dd');
 String handleSpokenLanguages(List arr) {
   var result = "";
 
-  for (final item in arr) {
-    result += '${item["name"]}';
+  for (var i = 0; i < arr.length; i++) {
+    if (i == arr.length - 1) {
+      result += '${arr[i]["name"]}';
+    } else {
+      result += '${arr[i]["name"]},';
+    }
   }
 
   return result;
@@ -145,19 +150,35 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         Text(
                           _currentMovieInfo!.title,
                           style:
-                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              Theme.of(context).textTheme.titleLarge!.copyWith(
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
+                        if (_currentMovieInfo!.tagline != "")
+                          // const SizedBox(height: 8),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              _currentMovieInfo!.tagline,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(
+                                    color:
+                                        const Color.fromRGBO(104, 131, 146, 1),
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                            ),
+                          ),
                         const SizedBox(
-                          height: 8,
+                          height: 16,
                         ),
                         if (_currentMovieInfo!.voteAverage != null)
                           Text(
                             _currentMovieInfo!.voteAverage!.toStringAsFixed(1),
                             style: Theme.of(context)
                                 .textTheme
-                                .headlineMedium!
+                                .titleLarge!
                                 .copyWith(
                                   color: const Color.fromRGBO(104, 131, 146, 1),
                                   fontWeight: FontWeight.bold,
@@ -175,7 +196,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         const SizedBox(
                           height: 8,
                         ),
-                        Container(
+                        Padding(
                           padding: const EdgeInsets.only(
                               left: 16.0, right: 16.0, bottom: 24.0),
                           child: Column(
@@ -183,7 +204,6 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                             children: [
                               Text(
                                 "故事梗概",
-                                textAlign: TextAlign.start,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
@@ -207,6 +227,25 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                             ],
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 16.0, right: 16.0, bottom: 24.0),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "演职员表",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                                const SizedBox(height: 4),
+                                CreditsList(movieId: widget.movieId),
+                              ]),
+                        )
                       ],
                     ),
                   ),

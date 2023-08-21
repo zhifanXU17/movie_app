@@ -84,9 +84,7 @@ class InfoTable extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      NumberFormat.compactSimpleCurrency(
-                        locale: "zh_CN",
-                      ).format(boxOffice),
+                      NumberFormat.compactSimpleCurrency().format(boxOffice),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
