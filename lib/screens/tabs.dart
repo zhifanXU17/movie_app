@@ -37,14 +37,9 @@ class _TabsScreenState extends State<TabsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.sort_outlined,
-          ),
-        ),
-        leadingWidth: 55.0,
-        elevation: 0.0,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search_outlined)),
+        ],
       ),
       body: const SingleChildScrollView(child: HomeScreen()),
       bottomNavigationBar: const CustomNavigationBar(),

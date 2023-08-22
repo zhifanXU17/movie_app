@@ -84,7 +84,10 @@ class InfoTable extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      NumberFormat.compactSimpleCurrency().format(boxOffice),
+                      boxOffice != 0
+                          ? NumberFormat.compactSimpleCurrency()
+                              .format(boxOffice)
+                          : "即将上映",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontWeight: FontWeight.w600,
                           ),

@@ -174,15 +174,28 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           height: 16,
                         ),
                         if (_currentMovieInfo!.voteAverage != null)
-                          Text(
-                            _currentMovieInfo!.voteAverage!.toStringAsFixed(1),
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  color: const Color.fromRGBO(104, 131, 146, 1),
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.star,
+                                size: 18,
+                                color: Color.fromRGBO(255, 182, 45, 1),
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                _currentMovieInfo!.voteAverage!
+                                    .toStringAsFixed(1),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(
+                                      color: const Color.fromRGBO(
+                                          104, 131, 146, 1),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
                           ),
                         const SizedBox(
                           height: 8,
